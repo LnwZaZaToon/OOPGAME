@@ -18,6 +18,8 @@ public class Games extends JFrame implements ActionListener {
     Player player1;
     Player player2;
     StartGame PlayButton;
+    DisplayGame displayGameReal;
+    
 
     public Games() {
         // Load background image
@@ -125,6 +127,15 @@ public class Games extends JFrame implements ActionListener {
         drawBG.add(PlayButton, BorderLayout.CENTER); // Add ChooseJobPage panel
         drawBG.revalidate(); // Refresh the layout
         drawBG.repaint(); // Repaint to show the new panel
+    }
+    
+    public void switchToDisplayGame() {      
+        drawBG.remove(PlayButton);
+        displayGameReal = new DisplayGame(this);
+        drawBG.add(displayGameReal, BorderLayout.CENTER); 
+        drawBG.revalidate(); // Refresh the layout
+        drawBG.repaint(); // Repaint to show the new panel
+        displayGameReal.requestFocusInWindow();
     }
     
     public void switchToMainMenu() {

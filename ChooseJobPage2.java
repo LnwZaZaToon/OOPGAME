@@ -20,6 +20,8 @@ public class ChooseJobPage2 extends JPanel implements ActionListener {
     JButton backButton = new JButton("Back to Start");
     JButton NextButton = new JButton("Select");
     JLabel ShowMessage = new JLabel();
+    
+
     URL imgBgURLhero = getClass().getResource("Protect.png");
     URL imgBgURLdevil = getClass().getResource("Protect_skel.png");
     URL imgBgURLhero2 = getClass().getResource("idlewizard.png");
@@ -126,6 +128,9 @@ class StartGame extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             mainFrame.switchToChooseJobPage2();
+        }
+        else if (e.getSource() == NextButton) {
+            mainFrame.switchToDisplayGame();
         } 
     }
 }
