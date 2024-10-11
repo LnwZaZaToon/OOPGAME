@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ChoosePlayer2 extends JPanel implements ActionListener {
 
@@ -44,7 +45,10 @@ public class ChoosePlayer2 extends JPanel implements ActionListener {
         if (e.getSource() == backButton) {
             mainFrame.switchToChoosePlayer1();
         } else if (e.getSource() == NextButton) {
-            mainFrame.switchToChooseJobPage();
+            if(mainFrame.player1 != null && mainFrame.player2!=null)
+                mainFrame.switchToChooseJobPage();
+            else
+                showMessageDialog(null, "you still yet to choose player");
         } else if (e.getSource() == jbtChooseP2Hero) {
             Player player2 = new Player("Hero");
             mainFrame.setPlayer2(player2); // Set Player 2 as Hero

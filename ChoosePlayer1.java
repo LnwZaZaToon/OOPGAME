@@ -54,12 +54,12 @@ public class ChoosePlayer1 extends JPanel implements ActionListener  {
         }
         else if (e.getSource() == jbtChooseP1Hero) {
             Player player1 = new Player("Hero");
-            mainFrame.setPlayer2(player1); // Set Player 2 as Hero
+            mainFrame.setPlayer1(player1); // Set Player 2 as Hero
             ShowMessage.setText(player1.getName());
             
         } else if (e.getSource() == jbtChooseP1Devil) {
             Player player1 = new Player("Devil");
-            mainFrame.setPlayer2(player1); // Set Player 2 as Devil
+            mainFrame.setPlayer1(player1); // Set Player 2 as Devil
             ShowMessage.setText(player1.getName());
             
             

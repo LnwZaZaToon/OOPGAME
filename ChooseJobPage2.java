@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class ChooseJobPage extends JPanel implements ActionListener {
+public class ChooseJobPage2 extends JPanel implements ActionListener {
 
     Games mainFrame;
     JButton jbtChooseRoleHero1 = new JButton();
@@ -25,17 +25,17 @@ public class ChooseJobPage extends JPanel implements ActionListener {
     URL imgBgURLhero2 = getClass().getResource("idlewizard.png");
     String RoleType;
 
-    public ChooseJobPage(Games mainFrame) {
+    public ChooseJobPage2(Games mainFrame) {
         this.mainFrame = mainFrame; // Initialize the main frame reference
 
         setLayout(new BorderLayout()); // Set layout manager to BorderLayout
         JPanel Bg2 = new JPanel(); // Create a panel for buttons
         JPanel BgChoose = new JPanel();
 
-        ShowMessage.setText("Player 1 Choose a Role of " + mainFrame.player1.getName()); // Initial message       
+        ShowMessage.setText("Player 2 Choose a Role of " + mainFrame.player2.getName()); // Initial message       
         BgChoose.add(ShowMessage);
 
-        if (mainFrame.player1.getName().equals("Hero")) {
+        if (mainFrame.player2.getName().equals("Hero")) {
             if (imgBgURLhero != null) {
                 ImageIcon heroIcon = new ImageIcon(imgBgURLhero);
                 jbtChooseRoleHero1.setIcon(heroIcon);
@@ -47,7 +47,7 @@ public class ChooseJobPage extends JPanel implements ActionListener {
             }
             BgChoose.add(jbtChooseRoleHero1);
             BgChoose.add(jbtChooseRoleHero2);
-        } else if (mainFrame.player1.getName().equals("Devil")) {
+        } else if (mainFrame.player2.getName().equals("Devil")) {
             if (imgBgURLdevil != null) {
                 ImageIcon devilIcon = new ImageIcon(imgBgURLdevil);
                 jbtChooseRoleDevil.setIcon(devilIcon);
@@ -84,10 +84,48 @@ public class ChooseJobPage extends JPanel implements ActionListener {
         }else if (e.getSource() == jbtChooseRoleDevil) {
             RoleType = "King of Skelleton";
         } else if (e.getSource() == NextButton) {
-            mainFrame.player1.setRole(RoleType);
-            System.out.println(mainFrame.player1.getRole());
-            mainFrame.switchToChooseJobPage2();
+            mainFrame.player2.setRole(RoleType);
+            System.out.println(mainFrame.player2.getRole());
+            mainFrame.switchToChoosePlayGame();
         }
     }
 
+}
+
+
+
+class StartGame extends JPanel implements ActionListener {
+
+    Games mainFrame;
+    JButton backButton = new JButton("Back");
+    JButton NextButton = new JButton("Play");
+
+    String RoleType;
+
+    public StartGame(Games mainFrame) {
+        this.mainFrame = mainFrame; // Initialize the main frame reference
+
+        setLayout(new BorderLayout()); // Set layout manager to BorderLayout
+        JPanel Bg2 = new JPanel(); // Create a panel for buttons
+
+
+        Bg2.add(backButton); // Add the back button
+        Bg2.add(NextButton);
+        
+        add(Bg2, BorderLayout.SOUTH);
+
+        backButton.addActionListener(this);
+        NextButton.addActionListener(this);
+
+        
+        Bg2.setOpaque(false); // Make this panel transparent
+        setOpaque(false); // Make the main panel transparent
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == backButton) {
+            mainFrame.switchToChooseJobPage2();
+        } 
+    }
 }

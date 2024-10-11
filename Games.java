@@ -14,8 +14,10 @@ public class Games extends JFrame implements ActionListener {
     ChoosePlayer1 choosePlayer1Panel; // Declare the ChoosePlayer1 panel
     ChoosePlayer2 choosePlayer2Panel;
     ChooseJobPage chooseJobPage;
+    ChooseJobPage2 chooseJobPage2;
     Player player1;
     Player player2;
+    StartGame PlayButton;
 
     public Games() {
         // Load background image
@@ -85,6 +87,9 @@ public class Games extends JFrame implements ActionListener {
     }
 
     public void switchToChoosePlayer2() {
+        if (chooseJobPage != null) {
+            drawBG.remove(chooseJobPage);
+        }
         // Remove the ChoosePlayer1 panel and add ChoosePlayer2 panel
         drawBG.remove(choosePlayer1Panel); // Remove ChoosePlayer1 panel
         choosePlayer2Panel = new ChoosePlayer2(this); // Create a new ChoosePlayer2 instance
@@ -93,9 +98,31 @@ public class Games extends JFrame implements ActionListener {
         drawBG.repaint(); // Repaint to show the new panel
     }
     public void switchToChooseJobPage() {
+        if (chooseJobPage2 != null) {
+            drawBG.remove(chooseJobPage2);
+        }
         drawBG.remove(choosePlayer2Panel); // Remove the ChoosePlayer2 panel
         chooseJobPage = new ChooseJobPage(this); // Create a new ChooseJobPage instance
         drawBG.add(chooseJobPage, BorderLayout.CENTER); // Add ChooseJobPage panel
+        drawBG.revalidate(); // Refresh the layout
+        drawBG.repaint(); // Repaint to show the new panel
+    }
+    
+    public void switchToChooseJobPage2() {
+        if (PlayButton != null) {
+            drawBG.remove(PlayButton);
+        }        
+        drawBG.remove(chooseJobPage);
+        chooseJobPage2 = new ChooseJobPage2(this); // Create a new ChooseJobPage instance
+        drawBG.add(chooseJobPage2, BorderLayout.CENTER); // Add ChooseJobPage panel
+        drawBG.revalidate(); // Refresh the layout
+        drawBG.repaint(); // Repaint to show the new panel
+    }
+    
+    public void switchToChoosePlayGame() {      
+        drawBG.remove(chooseJobPage2);
+        PlayButton = new StartGame(this);
+        drawBG.add(PlayButton, BorderLayout.CENTER); // Add ChooseJobPage panel
         drawBG.revalidate(); // Refresh the layout
         drawBG.repaint(); // Repaint to show the new panel
     }
